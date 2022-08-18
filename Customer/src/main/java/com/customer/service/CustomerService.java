@@ -1,12 +1,12 @@
 package com.customer.service;
 
+import com.clients.fraud.FraudCheckResponse;
+import com.clients.fraud.FraudClient;
 import com.customer.dto.CustomerRegistrationRequest;
-import com.customer.dto.FraudCheckResponse;
 import com.customer.model.Customer;
 import com.customer.repo.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 @AllArgsConstructor
@@ -14,7 +14,7 @@ public class CustomerService {
 
 
     private final CustomerRepository customerRepository;
-    private final RestTemplate restTemplate;
+    private final FraudClient fraudClient;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -26,11 +26,7 @@ public class CustomerService {
         // todo: check if email not taken
         customerRepository.saveAndFlush(customer);
         // todo: check if fraudster
-        FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
-                "http://FRAUD/fraud-check/{customerId}",
-                FraudCheckResponse.class,
-                customer.getId()
-        );
+        FraudCheckResponse fraudCheckResponse =fraudClient.isFraudster(customer.getId());
 
         if (fraudCheckResponse.isFraudster()) {
             throw new IllegalStateException("fraudster");
