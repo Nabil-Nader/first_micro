@@ -12,42 +12,31 @@ import org.springframework.web.client.RestTemplate;
 @AllArgsConstructor
 public class CustomerService {
 
-    private final CustomerRepository customerRepository ;
+
+    private final CustomerRepository customerRepository;
     private final RestTemplate restTemplate;
 
-    public void registerNewCustomer(CustomerRegistrationRequest request) {
-
-        Customer customer =
-                Customer
-                .builder()
-                        .firstName(request.getFirstName())
-                        .lastName(request.getLastName())
-                        .email(request.getEmail())
+    public void registerCustomer(CustomerRegistrationRequest request) {
+        Customer customer = Customer.builder()
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
+                .email(request.getEmail())
                 .build();
-
-        //check for email valid
-        //check for email not taken
-
-        //check for fraudster
-        //save customer
-
+        // todo: check if email valid
+        // todo: check if email not taken
         customerRepository.saveAndFlush(customer);
-
-        //send notification
-
-
-
-
+        // todo: check if fraudster
         FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
-                "http://localhost:8081/fraud-check/{customerId}}",
+                "http://localhost:8081/fraud-check/{customerId}",
                 FraudCheckResponse.class,
                 customer.getId()
-
         );
 
-        if (fraudCheckResponse.isFraudster()){
-            throw  new IllegalStateException("ops you are fraud!!!");
+        if (fraudCheckResponse.isFraudster()) {
+            throw new IllegalStateException("fraudster");
         }
+
+        // todo: send notification
 
     }
 }

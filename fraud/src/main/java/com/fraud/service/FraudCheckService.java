@@ -15,15 +15,15 @@ public class FraudCheckService {
     private final FraudCheckHistoryRepository fraudCheckHistoryRepository;
 
 
-    public boolean isFraudlentCustomer(Long customerId){
-
+    public boolean isFraudulentCustomer(Long customerId) {
         fraudCheckHistoryRepository.save(
                 FraudCheckHistory.builder()
-                        .isFraudster(false)
                         .customerId(customerId)
+                        .isFraudster(false)
                         .createAt(LocalDateTime.now())
                         .build()
         );
         return false;
     }
+
 }
