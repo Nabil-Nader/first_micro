@@ -12,6 +12,7 @@
   <modules>
     <module>Customer</module>
       <module>fraud</module>
+    <module>Eureka-Server</module>
   </modules>
 
   <name>learnservices</name>
@@ -22,11 +23,15 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <spring.boot.maven.plugin.version>2.6.2</spring.boot.maven.plugin.version>
-    <spring.boot.dependency.version>2.6.2</spring.boot.dependency.version>
+    <spring.boot.dependency.version>2.5.2</spring.boot.dependency.version>
+
+    <spring.cloud-version>2020.0.3</spring.cloud-version>
+
   </properties>
 
   <dependencyManagement>
     <dependencies>
+
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
@@ -34,7 +39,18 @@
         <scope>import</scope>
         <type>pom</type>
 
-      </dependency>
+      </dependency><dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-dependencies</artifactId>
+      <version>${spring.cloud-version}</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
+
+
+
+
+
     </dependencies>
   </dependencyManagement>
 
