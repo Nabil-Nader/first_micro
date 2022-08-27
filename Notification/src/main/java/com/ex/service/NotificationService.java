@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class NotificationService {
     private final NotificationRepository notificationRepository;
-    public void addNotification(NotificationRequest request) {
+    public void send(NotificationRequest request) {
         notificationRepository.save(
                 Notification.builder()
                         .toCustomerEmail(request.getToCustomerEmail())
