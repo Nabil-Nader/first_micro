@@ -12,16 +12,17 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class NotificationService {
     private final NotificationRepository notificationRepository;
-    public void send(NotificationRequest request) {
+    public void send(NotificationRequest notificationRequest) {
         notificationRepository.save(
                 Notification.builder()
-                        .toCustomerEmail(request.getToCustomerEmail())
-                        .toCustomerId(request.getToCustomerId())
-                        .sender("BillyCode")
-                        .message(request.getMessage())
+                        .toCustomerId(notificationRequest.toCustomerId())
+                        .toCustomerEmail(notificationRequest.toCustomerName())
+                        .sender("Amigoscode")
+                        .message(notificationRequest.message())
                         .sentAt(LocalDateTime.now())
                         .build()
         );
-
     }
+
+
 }
