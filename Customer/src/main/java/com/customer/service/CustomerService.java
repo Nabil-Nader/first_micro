@@ -2,6 +2,8 @@ package com.customer.service;
 
 import com.clients.fraud.FraudCheckResponse;
 import com.clients.fraud.FraudClient;
+import com.clients.notification.NotificationClient;
+import com.clients.notification.NotificationRequest;
 import com.customer.dto.CustomerRegistrationRequest;
 import com.customer.model.Customer;
 import com.customer.repo.CustomerRepository;
@@ -15,7 +17,7 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
     private final FraudClient fraudClient;
-
+    private final NotificationClient notificationClient;
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
                 .firstName(request.getFirstName())
@@ -33,6 +35,13 @@ public class CustomerService {
         }
 
         // todo: send notification
+        notificationClient.sendNotification(
+                new NotificationRequest(
+                        customer.getId(),
+                        customer.getEmail(),
+                        String.format("Hi %s, Welcome to Our server",customer.getFirstName())
+                )
+        );
 
     }
 }

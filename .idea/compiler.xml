@@ -11,6 +11,7 @@
         <module name="clients" />
         <module name="Customer" />
         <module name="fraud" />
+        <module name="Notification" />
       </profile>
     </annotationProcessing>
   </component>
