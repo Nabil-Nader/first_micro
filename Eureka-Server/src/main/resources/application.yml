@@ -11,3 +11,7 @@ spring:
       enabled: always
   application:
     name: eureka-server
+
+  zipken:
+    base-url: http://localhost:9411
+
