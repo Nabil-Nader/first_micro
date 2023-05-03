@@ -7,14 +7,14 @@
   <groupId>com.learn_micro</groupId>
   <artifactId>learnservices</artifactId>
   <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.2-SNAPSHOT</version>
 
   <modules>
-    <module>Customer</module>
+    <module>customer</module>
       <module>fraud</module>
-    <module>Eureka-Server</module>
+    <module>eureka-server</module>
     <module>clients</module>
-      <module>Notification</module>
+      <module>notification</module>
     <module>apigw</module>
       <module>amqp</module>
   </modules>
@@ -31,6 +31,7 @@
     <spring.cloud-version>2020.0.3</spring.cloud-version>
     <image>nabilnader/${project.artifactId}:${project.version}</image>
   </properties>
+
 
   <dependencyManagement>
     <dependencies>
@@ -65,20 +66,6 @@
       <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
   </dependencies>
-
-  <profiles>
-    <profile>
-      <id>build-docker-image</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.google.cloud.tools</groupId>
-            <artifactId>jib-maven-plugin</artifactId>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->

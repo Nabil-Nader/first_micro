@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Eureka-Server</artifactId>
+    <artifactId>eureka-server</artifactId>
 
     <packaging>jar</packaging>
 
