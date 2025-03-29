@@ -3,8 +3,8 @@ services:
     container_name: postgres
     image: postgres
     environment:
-      POSTGRES_USER: amigoscode
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: billy
+      POSTGRES_PASSWORD: billy
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
@@ -28,6 +28,16 @@ services:
     networks:
       - postgres
     restart: unless-stopped
+
+
+  zipkin:
+    image: ghcr.io/openzipkin/zipkin-slim:${TAG:-latest}
+    container_name: zipkin
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - 9411:9411
+    # Uncomment to enable debug logging
+    # command: --logging.level.zipkin2=DEBUG
 
 networks:
   postgres:
