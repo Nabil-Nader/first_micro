@@ -1,14 +1,14 @@
 server:
-  port: 8081
+  port: 8082
 spring:
   output:
     ansi:
       enabled: always
   application:
-    name: fraud
+    name: notification
   datasource:
     password: billy
-    url: jdbc:postgresql://localhost:5432/fraud
+    url: jdbc:postgresql://localhost:5432/notification
     username: billy
   jpa:
     hibernate:
@@ -25,3 +25,4 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     fetch-registry: true
     register-with-eureka: true
+

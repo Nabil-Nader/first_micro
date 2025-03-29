@@ -2,6 +2,8 @@ package com.customer.service;
 
 import com.clients.fraud.FraudCheckResponse;
 import com.clients.fraud.FraudClient;
+import com.clients.notification.NotificationClient;
+import com.clients.notification.NotificationRequest;
 import com.customer.dto.CustomerRegistrationRequest;
 import com.customer.model.Customer;
 import com.customer.repo.CustomerRepository;
@@ -15,6 +17,7 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
     private final FraudClient fraudClient;
+    private final NotificationClient notificationClient;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -32,7 +35,17 @@ public class CustomerService {
             throw new IllegalStateException("fraudster");
         }
 
-        // todo: send notification
+        // send notification
+
+        NotificationRequest notificationRequest = new NotificationRequest(
+                customer.getId().intValue(),
+                customer.getEmail(),
+                "Hello " + customer.getFirstName()+" this is notification from customer service"
+        );
+
+
+
+        notificationClient.sendNotification(notificationRequest);
 
     }
 }
