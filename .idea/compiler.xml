@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Eureka-Server" />
         <module name="notification" />
+        <module name="apigw" />
         <module name="clients" />
         <module name="Customer" />
         <module name="fraud" />
