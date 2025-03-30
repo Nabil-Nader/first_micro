@@ -7,6 +7,7 @@ import com.clients.notification.NotificationRequest;
 import com.customer.dto.CustomerRegistrationRequest;
 import com.customer.model.Customer;
 import com.customer.repo.CustomerRepository;
+import com.learn_micro.config.RabbitMQMessageProducer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final FraudClient fraudClient;
     private final NotificationClient notificationClient;
+    private final RabbitMQMessageProducer rabbitMQMessageProducer;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -44,8 +46,13 @@ public class CustomerService {
         );
 
 
+        rabbitMQMessageProducer.publish(
+                notificationRequest,
+                "internal.exchange",
+                "internal.notification.routing-key"
+        );
 
-        notificationClient.sendNotification(notificationRequest);
+//        notificationClient.sendNotification(notificationRequest);
 
     }
 }
