@@ -10,6 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>Customer</artifactId>
+    <packaging>jar</packaging>
+
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -71,5 +73,9 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <finalName>customer</finalName>
+    </build>
 
 </project>

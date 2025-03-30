@@ -10,6 +10,9 @@
     </parent>
 
     <artifactId>apigw</artifactId>
+    <packaging>jar</packaging>
+
+
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -36,5 +39,9 @@
             <artifactId>spring-cloud-sleuth-zipkin</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>apigw</finalName>
+    </build>
 
 </project>
