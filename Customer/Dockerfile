@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy the JAR file from your local machine into the Docker image
 # Ensure you build the JAR first with 'mvn clean install' locally
-COPY target/Customer.jar /app/app.jar
+COPY target/customer.jar /app/app.jar
 
 # Expose the port for the Spring Boot app
 EXPOSE 8080
